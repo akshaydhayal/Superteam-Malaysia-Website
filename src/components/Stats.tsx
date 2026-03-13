@@ -3,12 +3,12 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 
 const stats = [
-  { value: 200, suffix: '+', label: 'Community Members', desc: 'Builders, founders & creators', color: '#00ff88' },
-  { value: 15, suffix: '+', label: 'Events Hosted', desc: 'Hackathons, workshops & meetups', color: '#9945FF' },
-  { value: 50, suffix: '+', label: 'Projects Built', desc: 'On Solana by Malaysian builders', color: '#f59e0b' },
-  { value: 30, suffix: '+', label: 'Bounties Completed', desc: 'Total value in USDC earned', color: '#ec4899' },
-  { value: 5, suffix: 'K+', label: 'Community Reach', desc: 'Across social channels', color: '#06b6d4' },
-  { value: 20, suffix: '+', label: 'Global Network', desc: 'Superteam chapters worldwide', color: '#9945FF' },
+  { value: 200, suffix: '+', label: 'Community Members',  desc: 'Builders, founders & creators',        color: '#00ff88' },
+  { value: 15,  suffix: '+', label: 'Events Hosted',       desc: 'Hackathons, workshops & meetups',      color: '#9945FF' },
+  { value: 50,  suffix: '+', label: 'Projects Built',      desc: 'On Solana by Malaysian builders',      color: '#f59e0b' },
+  { value: 30,  suffix: '+', label: 'Bounties Completed',  desc: 'Total value in USDC earned',           color: '#ec4899' },
+  { value: 5,   suffix: 'K+',label: 'Community Reach',    desc: 'Across social channels',               color: '#06b6d4' },
+  { value: 20,  suffix: '+', label: 'Global Network',      desc: 'Superteam chapters worldwide',         color: '#9945FF' },
 ]
 
 function AnimatedCounter({ value, suffix, color }: { value: number; suffix: string; color: string }) {
@@ -19,10 +19,10 @@ function AnimatedCounter({ value, suffix, color }: { value: number; suffix: stri
   useEffect(() => {
     if (!inView) return
     let start = 0
-    const duration = 2000
-    const step = (timestamp: number) => {
-      if (!start) start = timestamp
-      const progress = Math.min((timestamp - start) / duration, 1)
+    const duration = 1800
+    const step = (ts: number) => {
+      if (!start) start = ts
+      const progress = Math.min((ts - start) / duration, 1)
       const eased = 1 - Math.pow(1 - progress, 3)
       setCount(Math.floor(eased * value))
       if (progress < 1) requestAnimationFrame(step)
@@ -31,7 +31,7 @@ function AnimatedCounter({ value, suffix, color }: { value: number; suffix: stri
   }, [inView, value])
 
   return (
-    <div ref={ref} className="text-4xl sm:text-5xl font-black font-['Syne']" style={{ color }}>
+    <div ref={ref} style={{ fontFamily: "'Syne', sans-serif", fontSize: 'clamp(2.25rem, 4vw, 3rem)', fontWeight: 900, color, lineHeight: 1 }}>
       {count}{suffix}
     </div>
   )
@@ -39,10 +39,8 @@ function AnimatedCounter({ value, suffix, color }: { value: number; suffix: stri
 
 export default function Stats() {
   return (
-    <section className="py-24 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[rgba(153,69,255,0.03)] to-transparent" />
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-80 h-80 rounded-full bg-[rgba(153,69,255,0.06)] blur-[80px] pointer-events-none" />
+    <section className="section-padding section-alt-bg" style={{ position: 'relative', overflow: 'hidden' }}>
+      <div style={{ position: 'absolute', left: 0, top: '50%', transform: 'translateY(-50%)', width: 350, height: 350, borderRadius: '50%', background: 'rgba(153,69,255,0.06)', filter: 'blur(80px)', pointerEvents: 'none' }} />
 
       <div className="container-max">
         <motion.div
@@ -50,43 +48,41 @@ export default function Stats() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          style={{ textAlign: 'center', marginBottom: '4rem' }}
         >
-          <span className="section-label section-label-green mb-4 block">Impact</span>
-          <h2 className="font-['Syne'] text-4xl sm:text-5xl font-black text-white mb-4">
+          <span className="section-label section-label-green">Impact</span>
+          <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 'clamp(2rem, 4.5vw, 3rem)', fontWeight: 900, color: '#fff', marginBottom: '1rem' }}>
             Growing <span className="gradient-text-purple">stronger</span> every day
           </h2>
-          <p className="text-[#9090a8] text-lg max-w-xl mx-auto">
+          <p style={{ color: '#9090a8', fontSize: '1.05rem', maxWidth: 480, margin: '0 auto' }}>
             Real numbers from a real community building real products on Solana.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
+          gap: '1.25rem',
+        }}>
           {stats.map((stat, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
+              transition={{ duration: 0.5, delay: i * 0.07 }}
               whileHover={{ y: -4, scale: 1.02 }}
-              className="glass-card glass-card-hover rounded-2xl p-6 sm:p-8 relative overflow-hidden group"
+              className="glass-card glass-card-hover"
+              style={{ borderRadius: 20, padding: '2rem', position: 'relative', overflow: 'hidden' }}
             >
               {/* Glow corner */}
-              <div
-                className="absolute -top-8 -right-8 w-24 h-24 rounded-full opacity-20 group-hover:opacity-40 transition-opacity"
-                style={{ background: stat.color, filter: 'blur(20px)' }}
-              />
-
-              <div className="relative">
+              <div style={{ position: 'absolute', top: -30, right: -30, width: 90, height: 90, borderRadius: '50%', background: stat.color, filter: 'blur(20px)', opacity: 0.18 }} />
+              
+              <div style={{ position: 'relative' }}>
                 <AnimatedCounter value={stat.value} suffix={stat.suffix} color={stat.color} />
-                <div className="text-white font-bold mt-2 mb-1">{stat.label}</div>
-                <div className="text-[#5a5a72] text-sm">{stat.desc}</div>
-
-                <div
-                  className="mt-4 h-0.5 rounded-full w-12 group-hover:w-full transition-all duration-500"
-                  style={{ background: `linear-gradient(90deg, ${stat.color}, transparent)` }}
-                />
+                <div style={{ color: '#fff', fontWeight: 700, fontSize: '1rem', marginTop: '0.6rem', marginBottom: '0.3rem' }}>{stat.label}</div>
+                <div style={{ color: '#5a5a72', fontSize: '0.82rem' }}>{stat.desc}</div>
+                <div style={{ marginTop: '1.25rem', height: 2, width: 36, borderRadius: 99, background: `linear-gradient(90deg, ${stat.color}, transparent)` }} />
               </div>
             </motion.div>
           ))}

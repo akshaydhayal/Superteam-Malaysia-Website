@@ -3,55 +3,55 @@ import { motion } from 'framer-motion'
 
 const partners = [
   { name: 'Solana Foundation', category: 'ecosystem', color: '#9945FF' },
-  { name: 'Raydium', category: 'DeFi', color: '#00ff88' },
-  { name: 'Magic Eden', category: 'NFT', color: '#ec4899' },
-  { name: 'Jito', category: 'Infrastructure', color: '#f59e0b' },
-  { name: 'Orca', category: 'DeFi', color: '#06b6d4' },
-  { name: 'Pyth Network', category: 'Oracle', color: '#9945FF' },
-  { name: 'Jupiter', category: 'DEX', color: '#84cc16' },
-  { name: 'Tensor', category: 'NFT', color: '#f97316' },
-  { name: 'Drift Protocol', category: 'DeFi', color: '#a78bfa' },
-  { name: 'Backpack', category: 'Wallet', color: '#fb7185' },
-  { name: 'Marinade', category: 'Staking', color: '#34d399' },
-  { name: 'MonkeDAO', category: 'DAO', color: '#fbbf24' },
+  { name: 'Raydium',           category: 'DeFi',      color: '#00ff88' },
+  { name: 'Magic Eden',        category: 'NFT',       color: '#ec4899' },
+  { name: 'Jito',              category: 'Infrastructure', color: '#f59e0b' },
+  { name: 'Orca',              category: 'DeFi',      color: '#06b6d4' },
+  { name: 'Pyth Network',      category: 'Oracle',    color: '#9945FF' },
+  { name: 'Jupiter',           category: 'DEX',       color: '#84cc16' },
+  { name: 'Tensor',            category: 'NFT',       color: '#f97316' },
+  { name: 'Drift Protocol',    category: 'DeFi',      color: '#a78bfa' },
+  { name: 'Backpack',          category: 'Wallet',    color: '#fb7185' },
+  { name: 'Marinade',          category: 'Staking',   color: '#34d399' },
+  { name: 'MonkeDAO',          category: 'DAO',       color: '#fbbf24' },
 ]
 
 const malaysianPartners = [
-  { name: 'Cradle Fund', category: 'VC', color: '#0ea5e9' },
-  { name: 'MDEC', category: 'Gov', color: '#CC2929' },
-  { name: 'Digital Penang', category: 'Gov', color: '#003399' },
-  { name: 'Endeavor MY', category: 'Startup', color: '#6366f1' },
+  { name: 'Cradle Fund',    category: 'VC',      color: '#0ea5e9' },
+  { name: 'MDEC',           category: 'Gov',     color: '#CC2929' },
+  { name: 'Digital Penang', category: 'Gov',     color: '#003399' },
+  { name: 'Endeavor MY',    category: 'Startup', color: '#6366f1' },
 ]
 
-function PartnerLogo({ name, color, category }: { name: string; color: string; category: string }) {
+function PartnerLogo({ name, color, category, index }: { name: string; color: string; category: string; index: number }) {
   return (
     <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.04 }}
       whileHover={{ scale: 1.05 }}
-      className="glass-card rounded-2xl px-5 py-4 flex flex-col items-center justify-center gap-2 group cursor-pointer border border-white/5 hover:border-white/15 transition-all duration-300"
+      style={{
+        padding: '1.25rem', display: 'flex', flexDirection: 'column',
+        alignItems: 'center', justifyContent: 'center', gap: '0.6rem',
+        borderRadius: 20, cursor: 'pointer',
+      }}
+      className="glass-card glass-card-hover"
     >
-      {/* Logo placeholder - styled initial */}
-      <div
-        className="w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm transition-all duration-300 group-hover:scale-110"
-        style={{
-          background: `${color}20`,
-          border: `1px solid ${color}30`,
-          color: color,
-          boxShadow: `0 0 0 0 ${color}30`,
-        }}
-        onMouseEnter={e => {
-          (e.currentTarget as HTMLElement).style.boxShadow = `0 0 20px ${color}30`
-        }}
-        onMouseLeave={e => {
-          (e.currentTarget as HTMLElement).style.boxShadow = `0 0 0 0 ${color}30`
-        }}
-      >
+      <div style={{
+        width: 44, height: 44, borderRadius: 14,
+        background: `${color}15`, border: `1px solid ${color}30`,
+        color: color, display: 'flex', alignItems: 'center',
+        justifyContent: 'center', fontWeight: 900, fontSize: '0.9rem',
+      }}>
         {name.slice(0, 2).toUpperCase()}
       </div>
-      <div className="text-[#5a5a72] text-xs font-medium text-center group-hover:text-[#9090a8] transition-colors">{name}</div>
-      <div
-        className="text-[10px] px-2 py-0.5 rounded-full font-medium"
-        style={{ color: color, background: `${color}15` }}
-      >
+      <div style={{ color: '#f0f0f5', fontSize: '0.75rem', fontWeight: 600, textAlign: 'center' }}>{name}</div>
+      <div style={{
+        fontSize: '0.6rem', color: color, background: `${color}12`,
+        padding: '2px 8px', borderRadius: 99, fontWeight: 700,
+        textTransform: 'uppercase', letterSpacing: '0.04em',
+      }}>
         {category}
       </div>
     </motion.div>
@@ -60,71 +60,65 @@ function PartnerLogo({ name, color, category }: { name: string; color: string; c
 
 export default function Partners() {
   return (
-    <section id="partners" className="py-28 relative overflow-hidden">
-      <div className="absolute right-10 top-20 w-64 h-64 rounded-full bg-[rgba(0,255,136,0.04)] blur-[60px] pointer-events-none" />
+    <section id="partners" className="section-padding" style={{ position: 'relative', overflow: 'hidden' }}>
+      <div style={{ position: 'absolute', right: 0, top: '20%', width: 300, height: 300, borderRadius: '50%', background: 'rgba(153,69,255,0.04)', filter: 'blur(60px)', pointerEvents: 'none' }} />
 
       <div className="container-max">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          transition={{ duration: 0.5 }}
+          style={{ textAlign: 'center', marginBottom: '4rem' }}
         >
-          <span className="section-label section-label-green mb-4 block">Partners</span>
-          <h2 className="font-['Syne'] text-4xl sm:text-5xl font-black text-white mb-4">
-            Trusted by <span className="gradient-text-green">Solana's top</span> projects
+          <span className="section-label">Partners</span>
+          <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 'clamp(2rem, 4.5vw, 3rem)', fontWeight: 900, color: '#fff', marginBottom: '1rem' }}>
+            Trusted by <span className="gradient-text-green">Solana&apos;s top</span> projects
           </h2>
-          <p className="text-[#9090a8] max-w-xl mx-auto">
-            We work with leading Solana ecosystem projects and Malaysian organizations to create 
-            opportunities for our builders.
+          <p style={{ color: '#9090a8', fontSize: '1rem', maxWidth: 480, margin: '0 auto' }}>
+            We work with leading ecosystem projects and local organizations to create opportunities.
           </p>
         </motion.div>
 
-        {/* Solana Ecosystem */}
-        <div className="mb-10">
-          <div className="text-xs font-semibold text-[#5a5a72] uppercase tracking-widest mb-5">Solana Ecosystem Partners</div>
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
-            {partners.map((p, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-              >
-                <PartnerLogo {...p} />
-              </motion.div>
-            ))}
+        {/* Solana Partners */}
+        <div style={{ marginBottom: '4rem' }}>
+          <div style={{ fontSize: '0.65rem', fontWeight: 900, color: '#5a5a72', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '1.5rem', textAlign: 'center' }}>
+            Solana Ecosystem
+          </div>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))',
+            gap: '1rem',
+          }}>
+            {partners.map((p, i) => <PartnerLogo key={p.name} {...p} index={i} />)}
           </div>
         </div>
 
-        {/* Malaysian Ecosystem */}
-        <div>
-          <div className="text-xs font-semibold text-[#5a5a72] uppercase tracking-widest mb-5">Malaysian Ecosystem</div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            {malaysianPartners.map((p, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-              >
-                <PartnerLogo {...p} />
-              </motion.div>
-            ))}
+        {/* MY Partners */}
+        <div style={{ marginBottom: '4rem' }}>
+          <div style={{ fontSize: '0.65rem', fontWeight: 900, color: '#5a5a72', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '1.5rem', textAlign: 'center' }}>
+            Local Ecosystem
+          </div>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))',
+            gap: '1rem',
+          }}>
+            {malaysianPartners.map((p, i) => <PartnerLogo key={p.name} {...p} index={partners.length + i} />)}
           </div>
         </div>
 
-        {/* Marquee strip */}
-        <div className="mt-16 overflow-hidden py-4 relative">
-          <div className="absolute left-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-r from-[#050508] to-transparent pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-l from-[#050508] to-transparent pointer-events-none" />
+        {/* Marquee */}
+        <div style={{
+          marginTop: '6rem', overflow: 'hidden', padding: '1.5rem 0',
+          position: 'relative', borderTop: '1px solid rgba(255,255,255,0.05)',
+          borderBottom: '1px solid rgba(255,255,255,0.05)',
+        }}>
           <div className="marquee-inner">
             {[...partners, ...partners].map((p, i) => (
-              <span key={i} className="text-[#5a5a72] text-sm font-medium whitespace-nowrap flex items-center gap-2">
-                <span style={{ color: p.color }}>●</span>
-                {p.name}
+              <span key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: '#5a5a72', fontSize: '0.8rem', fontWeight: 600, whiteSpace: 'nowrap' }}>
+                <span style={{ color: p.color, fontSize: '1.2rem' }}>●</span>
+                {p.name.toUpperCase()}
               </span>
             ))}
           </div>

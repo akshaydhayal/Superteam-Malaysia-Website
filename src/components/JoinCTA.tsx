@@ -3,140 +3,95 @@ import { motion } from 'framer-motion'
 import { Send, MessageCircle, Twitter, ArrowRight } from 'lucide-react'
 
 const socials = [
-  {
-    name: 'Telegram',
-    handle: '@SuperteamMY',
-    href: 'https://t.me/SuperteamMY',
-    icon: <Send size={20} />,
-    color: '#0088cc',
-    desc: 'Join 500+ members',
-  },
-  {
-    name: 'Twitter / X',
-    handle: '@SuperteamMY',
-    href: 'https://twitter.com/SuperteamMY',
-    icon: <Twitter size={20} />,
-    color: '#1d9bf0',
-    desc: 'Follow for updates',
-  },
-  {
-    name: 'Discord',
-    handle: 'Superteam MY',
-    href: '#',
-    icon: <MessageCircle size={20} />,
-    color: '#5865F2',
-    desc: 'Chat with builders',
-  },
+  { name: 'Telegram', handle: '@SuperteamMY', href: 'https://t.me/SuperteamMY', icon: <Send size={18} />, color: '#0088cc', label: 'Join Chat' },
+  { name: 'Twitter / X', handle: '@SuperteamMY', href: 'https://twitter.com/SuperteamMY', icon: <Twitter size={18} />, color: '#1d9bf0', label: 'Follow' },
+  { name: 'Discord', handle: 'Global', href: '#', icon: <MessageCircle size={18} />, color: '#5865F2', label: 'Discord' },
 ]
 
 export default function JoinCTA() {
   return (
-    <section id="join" className="py-28 relative overflow-hidden">
-      {/* Big radial glow */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-[700px] h-[400px] rounded-full bg-[rgba(153,69,255,0.08)] blur-[100px]" />
-      </div>
+    <section id="join" className="section-padding" style={{ position: 'relative', overflow: 'hidden' }}>
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 800, height: 400, background: 'rgba(153,69,255,0.06)', filter: 'blur(100px)', zIndex: 0 }} />
 
-      <div className="container-max relative">
-        {/* Main CTA card */}
+      <div className="container-max" style={{ position: 'relative', zIndex: 1 }}>
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="rounded-3xl p-10 sm:p-16 relative overflow-hidden text-center mb-12"
+          className="glass-card"
           style={{
-            background: 'linear-gradient(135deg, rgba(153,69,255,0.12) 0%, rgba(0,0,0,0.4) 50%, rgba(0,255,136,0.08) 100%)',
-            border: '1px solid rgba(153,69,255,0.2)',
+            borderRadius: 32, padding: 'clamp(2rem, 6vw, 5rem)', textAlign: 'center',
+            background: 'linear-gradient(135deg, rgba(153,69,255,0.08) 0%, rgba(5,5,8,0.4) 50%, rgba(0,255,136,0.04) 100%)',
+            border: '1px solid rgba(153,69,255,0.15)',
+            marginBottom: '4rem',
           }}
         >
-          {/* Decorative corners */}
-          <div className="absolute top-0 left-0 w-40 h-40 rounded-full bg-[rgba(153,69,255,0.12)] blur-[40px]" />
-          <div className="absolute bottom-0 right-0 w-40 h-40 rounded-full bg-[rgba(0,255,136,0.08)] blur-[40px]" />
-
-          {/* Malaysia flag stripe */}
-          <div className="flex justify-center gap-1 mb-6">
-            <div className="h-1 w-6 bg-[#CC2929] rounded-full" />
-            <div className="h-1 w-6 bg-white/30 rounded-full" />
-            <div className="h-1 w-6 bg-[#003399] rounded-full" />
+          {/* Malaysia strip */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 6, marginBottom: '2rem' }}>
+            {['#CC2929', 'rgba(255,255,255,0.3)', '#003399'].map((c, i) => (
+              <div key={i} style={{ height: 3, width: 28, background: c, borderRadius: 99 }} />
+            ))}
           </div>
 
-          <div className="relative">
-            <span className="section-label mb-4 block justify-center">Join the Movement</span>
-            <h2 className="font-['Syne'] text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
-              Ready to build the future<br />
-              <span className="gradient-text-green">of Web3 in Malaysia?</span>
-            </h2>
-            <p className="text-[#9090a8] text-lg max-w-2xl mx-auto mb-10">
-              Join hundreds of builders, creators, and founders who are already shipping products, 
-              winning hackathons, and earning bounties through Superteam Malaysia.
-            </p>
+          <span className="section-label" style={{ marginBottom: '1.5rem' }}>Start your journey</span>
+          <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 900, color: '#fff', lineHeight: 1.05, marginBottom: '1.5rem' }}>
+            Ready to build the<br /><span className="gradient-text-green">future in Malaysia?</span>
+          </h2>
+          <p style={{ color: '#9090a8', fontSize: '1.15rem', lineHeight: 1.7, maxWidth: 640, margin: '0 auto 3rem' }}>
+            Join the community of builders shaping the decentralized future on Solana. Bounties, grants, and networking await.
+          </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-              <a
-                href="https://superteam.fun/malaysia"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary text-base py-4 px-10"
-              >
-                Apply to Join <ArrowRight size={18} />
-              </a>
-              <a
-                href="https://earn.superteam.fun"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary text-base py-4 px-10"
-              >
-                Explore Bounties
-              </a>
-            </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem', marginBottom: '4rem' }}>
+            <a href="https://superteam.fun/malaysia" target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ padding: '1rem 2.5rem' }}>
+              Apply to Join <ArrowRight size={18} />
+            </a>
+            <a href="https://earn.superteam.fun" target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ padding: '1rem 2.5rem' }}>
+              Explore Bounties
+            </a>
+          </div>
 
-            {/* Social links */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              {socials.map((social, i) => (
-                <motion.a
-                  key={i}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ y: -3, scale: 1.04 }}
-                  className="flex items-center gap-3 glass-card rounded-2xl px-5 py-3 border border-white/8 hover:border-white/15 transition-all duration-200"
-                >
-                  <div
-                    className="w-9 h-9 rounded-xl flex items-center justify-center"
-                    style={{ background: `${social.color}20`, color: social.color }}
-                  >
-                    {social.icon}
-                  </div>
-                  <div className="text-left">
-                    <div className="text-white font-semibold text-sm">{social.name}</div>
-                    <div className="text-[#5a5a72] text-xs">{social.desc}</div>
-                  </div>
-                </motion.a>
-              ))}
-            </div>
+          {/* Social icons row */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem' }}>
+            {socials.map((s, i) => (
+              <motion.a
+                key={i} href={s.href} target="_blank" rel="noopener noreferrer"
+                whileHover={{ y: -4 }}
+                className="glass-card"
+                style={{
+                  display: 'flex', alignItems: 'center', gap: '0.875rem', padding: '0.75rem 1.25rem',
+                  borderRadius: 20, textDecoration: 'none', border: '1px solid rgba(255,255,255,0.07)',
+                }}
+              >
+                <div style={{ width: 36, height: 36, borderRadius: 12, background: `${s.color}15`, color: s.color, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  {s.icon}
+                </div>
+                <div style={{ textAlign: 'left' }}>
+                  <div style={{ color: '#fff', fontWeight: 700, fontSize: '0.82rem' }}>{s.name}</div>
+                  <div style={{ color: '#5a5a72', fontSize: '0.7rem' }}>{s.label}</div>
+                </div>
+              </motion.a>
+            ))}
           </div>
         </motion.div>
 
-        {/* Newsletter */}
+        {/* Newsletter signup */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="glass-card rounded-2xl p-8 sm:p-10 flex flex-col sm:flex-row items-center gap-6 justify-between"
+          className="glass-card"
+          style={{ padding: '2.5rem 3rem', borderRadius: 24, display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '2rem' }}
         >
           <div>
-            <h3 className="text-white font-bold text-xl mb-1">Stay in the loop</h3>
-            <p className="text-[#9090a8] text-sm">Get a monthly digest of Superteam Malaysia news, opportunities, and highlights.</p>
+            <h3 style={{ color: '#fff', fontWeight: 800, fontSize: '1.25rem', marginBottom: '0.25rem' }}>Stay updated</h3>
+            <p style={{ color: '#9090a8', fontSize: '0.9rem' }}>Get the latest opportunities in your inbox.</p>
           </div>
-          <div className="flex gap-2 w-full sm:w-auto shrink-0">
-            <input
-              type="email"
-              placeholder="your@email.com"
-              className="flex-1 sm:w-64 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-[#5a5a72] outline-none focus:border-[rgba(153,69,255,0.4)] transition-colors"
-            />
-            <button className="btn-primary shrink-0 py-3 px-5">
+          <div style={{ display: 'flex', flex: '1 1 300px', maxWidth: 460, gap: '0.625rem' }}>
+            <input type="email" placeholder="Email address" style={{
+              flex: 1, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)',
+              borderRadius: 12, padding: '0 1rem', color: '#fff', outline: 'none',
+            }} />
+            <button className="btn-primary" style={{ padding: '0.75rem 1.5rem' }}>
               Subscribe <Send size={14} />
             </button>
           </div>

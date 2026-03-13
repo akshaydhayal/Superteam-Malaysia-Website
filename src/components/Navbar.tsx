@@ -1,20 +1,20 @@
 'use client'
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, ExternalLink } from 'lucide-react'
+import { Menu, X, ArrowUpRight } from 'lucide-react'
+import Link from 'next/link'
 
-const navItems = [
-  { label: 'About', href: '#about' },
-  { label: 'Events', href: '#events' },
-  { label: 'Members', href: '/members' },
-  { label: 'Partners', href: '#partners' },
-  { label: 'FAQ', href: '#faq' },
+const navLinks = [
+  { name: 'About', href: '#about' },
+  { name: 'Events', href: '#events' },
+  { name: 'Members', href: '#members' },
+  { name: 'Partners', href: '#partners' },
+  { name: 'FAQ', href: '#faq' },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const [mobileOpen, setMobileOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -23,119 +23,141 @@ export default function Navbar() {
   }, [])
 
   return (
-    <>
-      <motion.nav
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? 'py-3' : 'py-5'
-        }`}
-      >
-        <div
-          className={`mx-4 sm:mx-8 lg:mx-16 rounded-2xl transition-all duration-300 ${
-            scrolled
-              ? 'bg-[rgba(5,5,8,0.85)] backdrop-blur-xl border border-white/8 shadow-2xl'
-              : 'bg-transparent'
-          }`}
-        >
-          <div className="flex items-center justify-between px-5 py-3">
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-2.5 group">
-              <div className="relative">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#9945FF] to-[#00ff88] flex items-center justify-center shadow-lg group-hover:shadow-[0_0_20px_rgba(153,69,255,0.4)] transition-all duration-300">
-                  <span className="text-white font-black text-sm">ST</span>
-                </div>
-              </div>
-              <div className="leading-none">
-                <div className="text-white font-bold text-sm tracking-tight">superteam</div>
-                <div className="text-[#00ff88] font-black text-xs tracking-widest uppercase">Malaysia</div>
-              </div>
-            </Link>
-
-            {/* Desktop nav */}
-            <div className="hidden md:flex items-center gap-1">
-              {navItems.map((item) => (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className="px-4 py-2 text-sm font-medium text-[#9090a8] hover:text-white rounded-xl hover:bg-white/5 transition-all duration-200"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-
-            {/* CTA */}
-            <div className="hidden md:flex items-center gap-3">
-              <a
-                href="https://earn.superteam.fun"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-sm font-medium text-[#9090a8] hover:text-white transition-colors duration-200"
-              >
-                Earn <ExternalLink size={12} />
-              </a>
-              <a
-                href="#join"
-                className="btn-primary text-sm py-2 px-5"
-              >
-                Join Community
-              </a>
-            </div>
-
-            {/* Mobile toggle */}
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden p-2 rounded-xl hover:bg-white/5 text-[#9090a8] hover:text-white transition-all"
-            >
-              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
+    <nav
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 50,
+        transition: 'all 0.3s ease',
+        padding: scrolled ? '0.75rem 0' : '1.25rem 0',
+        background: scrolled ? 'rgba(5, 5, 8, 0.8)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(12px)' : 'none',
+        borderBottom: scrolled ? '1px solid rgba(255, 255, 255, 0.05)' : '1px solid transparent',
+      }}
+    >
+      <div className="container-max" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        {/* Brand */}
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none' }}>
+          <div style={{
+            width: 40, height: 40, borderRadius: 12,
+            background: 'linear-gradient(135deg, #9945FF, #00ff88)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            boxShadow: '0 4px 12px rgba(153,69,255,0.3)',
+          }}>
+            <span style={{ color: '#fff', fontWeight: 900, fontSize: '0.9rem' }}>ST</span>
           </div>
-        </div>
-      </motion.nav>
+          <div style={{ lineHeight: 1 }}>
+            <div style={{ color: '#fff', fontWeight: 800, fontSize: '0.95rem' }}>superteam</div>
+            <div style={{ color: '#00ff88', fontWeight: 900, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Malaysia</div>
+          </div>
+        </Link>
 
-      {/* Mobile menu */}
+        {/* Desktop Links */}
+        <div style={{ display: 'none' }} className="lg:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              style={{
+                color: '#9090a8', fontSize: '0.85rem', fontWeight: 500,
+                textDecoration: 'none', transition: 'color 0.2s',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = '#fff')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = '#9090a8')}
+            >
+              {link.name}
+            </Link>
+          ))}
+        </div>
+
+        {/* Desktop CTAs */}
+        <div style={{ display: 'none' }} className="lg:flex items-center gap-4">
+          <a
+            href="https://earn.superteam.fun"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              color: '#9090a8', fontSize: '0.85rem', fontWeight: 500,
+              textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4,
+            }}
+          >
+            Earn <ArrowUpRight size={14} />
+          </a>
+          <Link
+            href="#join"
+            style={{
+              background: '#00ff88', color: '#050508', fontWeight: 700,
+              fontSize: '0.85rem', padding: '0.6rem 1.25rem', borderRadius: 99,
+              textDecoration: 'none', transition: 'all 0.2s',
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.transform = 'translateY(-1px)')}
+            onMouseLeave={(e) => (e.currentTarget.style.transform = 'translateY(0)')}
+          >
+            Join Community
+          </Link>
+        </div>
+
+        {/* Mobile Toggle */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          style={{
+            display: 'flex', background: 'none', border: 'none', color: '#fff',
+            cursor: 'pointer', padding: 4,
+          }}
+          className="lg:hidden"
+        >
+          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
+
+      {/* Mobile Menu Overlay */}
       <AnimatePresence>
-        {mobileOpen && (
+        {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-[rgba(5,5,8,0.97)] backdrop-blur-xl flex flex-col pt-24 px-6"
+            style={{
+              position: 'absolute', top: '100%', left: 0, right: 0,
+              background: 'rgba(5, 5, 8, 0.98)', backdropFilter: 'blur(16px)',
+              padding: '2rem', borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+              display: 'flex', flexDirection: 'column', gap: '1.5rem',
+            }}
           >
-            <div className="flex flex-col gap-2">
-              {navItems.map((item, i) => (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.06 }}
-                >
-                  <Link
-                    href={item.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="flex items-center text-2xl font-bold text-[#9090a8] hover:text-white py-3 border-b border-white/5 transition-colors"
-                  >
-                    {item.label}
-                  </Link>
-                </motion.div>
-              ))}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: navItems.length * 0.06 }}
-                className="mt-6"
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                style={{ color: '#fff', fontSize: '1.1rem', fontWeight: 600, textDecoration: 'none' }}
               >
-                <a href="#join" onClick={() => setMobileOpen(false)} className="btn-primary w-full justify-center text-base py-3.5">
-                  Join Community
-                </a>
-              </motion.div>
-            </div>
+                {link.name}
+              </Link>
+            ))}
+            <div style={{ height: 1, background: 'rgba(255, 255, 255, 0.05)', margin: '0.5rem 0' }} />
+            <a
+              href="https://earn.superteam.fun"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: '#00ff88', fontWeight: 600, textDecoration: 'none' }}
+            >
+              Earn Platform →
+            </a>
+            <Link
+              href="#join"
+              onClick={() => setMobileMenuOpen(false)}
+              style={{
+                background: '#00ff88', color: '#050508', fontWeight: 700,
+                padding: '1rem', borderRadius: 12, textAlign: 'center', textDecoration: 'none',
+              }}
+            >
+              Join Community
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </nav>
   )
 }

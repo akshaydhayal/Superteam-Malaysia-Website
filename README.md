@@ -1,36 +1,151 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Superteam Malaysia — Official Website
 
-## Getting Started
+The digital headquarters for the Solana builder community in Malaysia. Built for the Superteam Malaysia Website Design & Build Challenge.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🌐 Live Preview
+
+Run locally: `http://localhost:3000`
+
+## 🛠 Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Framework | Next.js 16 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4 + custom CSS |
+| Animations | Framer Motion |
+| Icons | Lucide React |
+| Fonts | Inter + Syne (Google Fonts) |
+
+## 📦 Project Structure
+
+```
+src/
+├── app/
+│   ├── layout.tsx         # Root layout + metadata + fonts
+│   ├── page.tsx           # Landing page — all sections
+│   ├── globals.css        # Design tokens, glass effects, animations
+│   └── members/
+│       └── page.tsx       # Members directory page
+└── components/
+    ├── Navbar.tsx         # Responsive navbar with scroll-aware glass effect
+    ├── Hero.tsx           # Full-screen hero with KL skyline SVG + stats
+    ├── Mission.tsx        # 6 pillars grid — What We Do
+    ├── Stats.tsx          # Animated counter stats — Impact section
+    ├── Events.tsx         # Event cards with Luma integration stubs
+    ├── Members.tsx        # Member spotlight cards
+    ├── Partners.tsx       # Partner logos + marquee strip
+    ├── WallOfLove.tsx     # Testimonials in masonry layout
+    ├── FAQ.tsx            # Accordion FAQ
+    ├── JoinCTA.tsx        # Join CTA + social links + newsletter
+    └── Footer.tsx         # Footer with navigation links
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Getting Started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Prerequisites
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Node.js 18+
+- npm 9+
 
-## Learn More
+### Installation
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Clone the repository
+git clone <your-repo-url>
+cd st-malaysia
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Install dependencies
+npm install
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Start development server
+npm run dev
+```
 
-## Deploy on Vercel
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Available Commands
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run dev      # Start development server (with Turbopack)
+npm run build    # Create production build
+npm run start    # Start production server
+npm run lint     # Run ESLint
+```
+
+## 🎨 Design System
+
+The website uses a dark-themed design system with:
+
+- **Primary Background**: `#050508`
+- **Accent Green** (Solana): `#00ff88`
+- **Accent Purple** (Superteam): `#9945FF`
+- **Malaysia Colors**: Red (`#CC2929`), White, Blue (`#003399`)
+- **Glassmorphism** cards with `backdrop-filter: blur`
+- **Framer Motion** for scroll-triggered and hover animations
+
+## 📝 Environment Variables
+
+No environment variables are required for the static version. Future integrations:
+
+```env
+# Supabase (for CMS & member database — future)
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+
+# Luma API (for events integration — future)
+LUMA_API_KEY=
+```
+
+## 📄 Pages
+
+### Landing Page (`/`)
+Complete with all 10 sections:
+1. Hero — KL skyline visual, animated stats
+2. Mission — 6 pillars of Superteam Malaysia
+3. Stats — Animated impact counters
+4. Events — Upcoming + Past events (Luma-ready)
+5. Members Spotlight — Featured member cards
+6. Partners — Solana ecosystem + Malaysian partners + marquee
+7. Wall of Love — Community testimonials
+8. FAQ — Expandable accordion
+9. Join CTA — Social links + newsletter signup
+10. Footer — Navigation + branding
+
+### Members Page (`/members`)
+- Search by name, role, skill, company
+- Category filters: Core Team, Rust, Frontend, Design, Content, Growth, Product, Community
+- Member cards with achievements, skill badges, Twitter/X links
+
+## 🌍 Deployment
+
+### Vercel (Recommended)
+```bash
+npm install -g vercel
+vercel
+```
+
+### Netlify
+```bash
+npm run build
+# Deploy the .next folder
+```
+
+## 📚 References
+
+- [Superteam Global](https://superteam.fun)
+- [Superteam UAE](https://uae.superteam.fun)
+- [Superteam Germany](https://de.superteam.fun)
+- [Solana Brand Kit](https://solana.com/branding)
+- [Superteam Earn](https://earn.superteam.fun)
+
+## 📬 Contact
+
+- Twitter/X: [@SuperteamMY](https://twitter.com/SuperteamMY)
+- Telegram: [t.me/SuperteamMY](https://t.me/SuperteamMY)
+
+---
+
+Built with ❤️ by Malaysian builders on Solana 🇲🇾

@@ -21,30 +21,30 @@ function MemberCard({ member, index }: { member: typeof members[0]; index: numbe
       transition={{ duration: 0.5, delay: index * 0.07 }}
       whileHover={{ y: -6 }}
       className="glass-card"
-      style={{ borderRadius: 20, overflow: 'hidden', cursor: 'pointer', border: '1px solid rgba(255,255,255,0.07)', transition: 'all 0.3s' }}
+      style={{ borderRadius: 24, overflow: 'hidden', cursor: 'pointer', border: '1px solid rgba(255,255,255,0.07)', transition: 'all 0.3s' }}
     >
       {/* Card header */}
-      <div style={{ height: 88, background: `linear-gradient(135deg, ${member.c1}22 0%, rgba(5,5,8,0.9) 100%)`, position: 'relative' }}>
-        <div style={{ position: 'absolute', top: '0.75rem', right: '0.75rem', fontSize: '0.68rem', fontWeight: 700, padding: '3px 10px', borderRadius: 99, color: member.badgeColor, background: `${member.badgeColor}18`, border: `1px solid ${member.badgeColor}35` }}>
+      <div style={{ height: 100, background: `linear-gradient(135deg, ${member.c1}22 0%, rgba(5,5,8,0.9) 100%)`, position: 'relative' }}>
+        <div style={{ position: 'absolute', top: 16, right: 16, fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em', padding: '4px 12px', borderRadius: 99, color: member.badgeColor, background: `${member.badgeColor}18`, border: `1px solid ${member.badgeColor}35` }}>
           {member.badge}
         </div>
       </div>
 
-      <div style={{ padding: '0 1.4rem 1.4rem', marginTop: -36 }}>
+      <div style={{ padding: '0 2.5rem 2.5rem', marginTop: -40 }}>
         {/* Avatar */}
         <div style={{
-          width: 56, height: 56, borderRadius: 14, border: '2px solid #050508',
+          width: 64, height: 64, borderRadius: 16, border: '4px solid #050508',
           background: `linear-gradient(135deg, ${member.c1}, ${member.c2})`,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: '1rem', fontWeight: 900, color: '#fff', marginBottom: '1rem',
-          boxShadow: `0 4px 16px ${member.c1}30`,
+          fontSize: '1.25rem', fontWeight: 900, color: '#fff', marginBottom: '1.5rem',
+          boxShadow: `0 10px 20px rgba(0,0,0,0.2)`,
         }}>
           {member.initials}
         </div>
 
-        <div style={{ marginBottom: '0.875rem' }}>
-          <div style={{ color: '#fff', fontWeight: 700, fontSize: '1rem', marginBottom: '0.2rem' }}>{member.name}</div>
-          <div style={{ color: '#9090a8', fontSize: '0.82rem' }}>{member.role}</div>
+        <div style={{ marginBottom: '1.75rem' }}>
+          <div style={{ color: '#fff', fontWeight: 800, fontSize: '1.2rem', marginBottom: 4, fontFamily: "'Syne', sans-serif" }}>{member.name}</div>
+          <div style={{ color: '#9090a8', fontSize: '0.85rem' }}>{member.role}</div>
           <div style={{ color: '#5a5a72', fontSize: '0.75rem' }}>{member.company}</div>
         </div>
 
@@ -54,7 +54,7 @@ function MemberCard({ member, index }: { member: typeof members[0]; index: numbe
         </div>
 
         {/* Achievements row */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderRadius: 12, background: 'rgba(255,255,255,0.03)', overflow: 'hidden', marginBottom: '1rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderRadius: 16, background: 'rgba(255,255,255,0.03)', overflow: 'hidden', marginBottom: '1rem' }}>
           {[['Hackathons', member.achievements.hackathons], ['Projects', member.achievements.projects], ['Bounties', member.achievements.bounties]].map(([label, val], j) => (
             <div key={label as string} style={{ padding: '0.625rem 0', textAlign: 'center', borderRight: j < 2 ? '1px solid rgba(255,255,255,0.05)' : undefined }}>
               <div style={{ color: '#fff', fontWeight: 700, fontSize: '0.95rem' }}>{val}</div>

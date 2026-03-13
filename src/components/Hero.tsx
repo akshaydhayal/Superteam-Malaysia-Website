@@ -72,20 +72,12 @@ export default function Hero() {
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            style={{
-              fontFamily: "'Syne', sans-serif",
-              fontSize: 'clamp(3rem, 8vw, 6rem)',
-              fontWeight: 900,
-              lineHeight: 1.0,
-              letterSpacing: '-0.02em',
-              marginBottom: '1.5rem',
-            }}
+            style={{ fontFamily: "'Syne', sans-serif", fontSize: 'clamp(2.8rem, 7vw, 5rem)', fontWeight: 900, color: '#fff', lineHeight: 1.25, letterSpacing: '-0.02em', marginBottom: '1.75rem' }}
           >
-            <span className="gradient-text-main">The Home for</span>
-            <br />
-            <span className="gradient-text-green">Solana Builders</span>
-            <br />
-            <span style={{ color: '#ffffff' }}>in Malaysia</span>
+            The Home <br />
+            <span style={{ color: '#9090a8', opacity: 0.8 }}>for</span> <br />
+            <span className="gradient-text-green">Solana Builders</span> <br />
+            in Malaysia
           </motion.h1>
 
           {/* Malaysia flag stripes */}

@@ -45,36 +45,25 @@ export default function Mission() {
         </motion.div>
 
         {/* Pillars grid */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-          gap: '1.25rem',
-          marginBottom: '3rem',
-        }}>
+        <div className="container-max" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
           {pillars.map((pillar, i) => (
             <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 28 }}
+              key={pillar.title}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              whileHover={{ y: -5 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
               className="glass-card glass-card-hover"
-              style={{ borderRadius: 20, padding: '1.75rem', cursor: 'default' }}
+              style={{ padding: '2.5rem', borderRadius: 24, border: '1px solid rgba(255,255,255,0.06)', height: '100%', display: 'flex', flexDirection: 'column' }}
             >
               {/* Icon */}
-              <div style={{
-                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                width: 48, height: 48, borderRadius: 14, marginBottom: '1.25rem',
-                background: pillar.glow, border: `1px solid ${pillar.color}30`, color: pillar.color,
-                boxShadow: `0 0 18px ${pillar.glow}`,
-              }}>
+              <div style={{ width: 64, height: 64, borderRadius: 16, background: `linear-gradient(135deg, ${pillar.color}20, ${pillar.color}10)`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: pillar.color, marginBottom: '2rem' }}>
                 {pillar.icon}
               </div>
-              <h3 style={{ color: '#fff', fontWeight: 700, fontSize: '1rem', marginBottom: '0.625rem', lineHeight: 1.4 }}>
+              <h3 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 800, marginBottom: '1rem', fontFamily: "'Syne', sans-serif" }}>
                 {pillar.title}
               </h3>
-              <p style={{ color: '#9090a8', fontSize: '0.875rem', lineHeight: 1.7, marginBottom: '1.25rem' }}>
+              <p style={{ color: '#9090a8', fontSize: '1rem', lineHeight: 1.7, flexGrow: 1 }}>
                 {pillar.desc}
               </p>
               {/* Accent line */}

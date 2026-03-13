@@ -59,27 +59,46 @@ export default function Stats() {
           </p>
         </motion.div>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
-          gap: '1.25rem',
-        }}>
+        <div className="container-max" style={{ 
+        display: 'grid', 
+        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
+        gap: '1.5rem',
+        marginTop: '-4rem',
+        position: 'relative',
+        zIndex: 20
+      }}>
           {stats.map((stat, i) => (
             <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 28 }}
+              key={stat.label}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.07 }}
-              whileHover={{ y: -4, scale: 1.02 }}
-              className="glass-card glass-card-hover"
-              style={{ borderRadius: 20, padding: '2rem', position: 'relative', overflow: 'hidden' }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="glass-card"
+              style={{ 
+                padding: '3rem 2rem', 
+                borderRadius: 24, 
+                border: '1px solid rgba(255,255,255,0.06)', 
+                textAlign: 'center',
+                background: 'rgba(10,10,15,0.8)',
+                backdropFilter: 'blur(20px)'
+              }}
             >
               {/* Glow corner */}
               <div style={{ position: 'absolute', top: -30, right: -30, width: 90, height: 90, borderRadius: '50%', background: stat.color, filter: 'blur(20px)', opacity: 0.18 }} />
               
               <div style={{ position: 'relative' }}>
-                <AnimatedCounter value={stat.value} suffix={stat.suffix} color={stat.color} />
+                <div style={{ 
+                  fontFamily: "'Syne', sans-serif", 
+                  fontSize: '4rem', 
+                  fontWeight: 900, 
+                  color: '#fff', 
+                  lineHeight: 1,
+                  marginBottom: '0.75rem',
+                  letterSpacing: '-0.04em'
+                }}>
+                  <AnimatedCounter value={stat.value} suffix={stat.suffix} color={stat.color} />
+                </div>
                 <div style={{ color: '#fff', fontWeight: 700, fontSize: '1rem', marginTop: '0.6rem', marginBottom: '0.3rem' }}>{stat.label}</div>
                 <div style={{ color: '#5a5a72', fontSize: '0.82rem' }}>{stat.desc}</div>
                 <div style={{ marginTop: '1.25rem', height: 2, width: 36, borderRadius: 99, background: `linear-gradient(90deg, ${stat.color}, transparent)` }} />

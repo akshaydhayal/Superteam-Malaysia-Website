@@ -32,17 +32,17 @@ export default function Footer() {
       <div className="container-max" style={{ position: 'relative', zIndex: 1, paddingTop: '5rem', paddingBottom: '3rem' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '3rem', marginBottom: '5rem' }}>
           {/* Brand Col */}
-          <div style={{ gridColumn: 'span 2' }}>
-            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', textDecoration: 'none', marginBottom: '1.5rem' }}>
-              <div style={{ width: 36, height: 36, borderRadius: 10, background: 'linear-gradient(135deg, #9945FF, #00ff88)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <span style={{ color: '#fff', fontWeight: 900, fontSize: '0.8rem' }}>ST</span>
+          <div style={{ gridColumn: 'span 2', paddingRight: '4rem' }}>
+            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', textDecoration: 'none', marginBottom: '2rem' }}>
+              <div style={{ width: 44, height: 44, borderRadius: 12, background: 'linear-gradient(135deg, #9945FF, #00ff88)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <span style={{ color: '#fff', fontWeight: 900, fontSize: '0.9rem' }}>ST</span>
               </div>
               <div style={{ lineHeight: 1 }}>
-                <div style={{ color: '#fff', fontWeight: 800, fontSize: '0.9rem' }}>superteam</div>
-                <div style={{ color: '#00ff88', fontWeight: 900, fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Malaysia</div>
+                <div style={{ color: '#fff', fontWeight: 900, fontSize: '1rem', fontFamily: "'Syne', sans-serif" }}>superteam</div>
+                <div style={{ color: '#00ff88', fontWeight: 900, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Malaysia</div>
               </div>
             </Link>
-            <p style={{ color: '#5a5a72', fontSize: '0.875rem', lineHeight: 1.6, maxWidth: 300, marginBottom: '2rem' }}>
+            <p style={{ color: '#9090a8', fontSize: '1rem', lineHeight: 1.8, maxWidth: 360, marginBottom: '2.5rem' }}>
               The home for Solana builders in Malaysia. Connecting talent, opportunities, and the global Web3 ecosystem.
             </p>
             {/* Social icons */}
@@ -65,14 +65,14 @@ export default function Footer() {
           {/* Nav Cols */}
           {Object.entries(footerLinks).map(([title, links]) => (
             <div key={title}>
-              <h4 style={{ color: '#9090a8', fontSize: '0.65rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '1.5rem' }}>{title}</h4>
-              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
+              <h4 style={{ color: '#fff', fontSize: '0.75rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '2rem', fontFamily: "'Syne', sans-serif" }}>{title}</h4>
+              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 {links.map(l => (
                   <li key={l.label}>
                     <a href={l.href} target={l.external ? "_blank" : "_self"} rel={l.external ? "noopener noreferrer" : ""} style={{
-                      color: '#5a5a72', fontSize: '0.875rem', textDecoration: 'none', transition: 'color 0.2s', display: 'flex', alignItems: 'center', gap: 4
-                    }} onMouseEnter={e => e.currentTarget.style.color = '#fff'} onMouseLeave={e => e.currentTarget.style.color = '#5a5a72'}>
-                      {l.label} {l.external && <ExternalLink size={10} opacity={0.5} />}
+                      color: '#9090a8', fontSize: '0.95rem', textDecoration: 'none', transition: 'all 0.2s', display: 'flex', alignItems: 'center', gap: 6
+                    }} onMouseEnter={e => e.currentTarget.style.color = '#fff'} onMouseLeave={e => e.currentTarget.style.color = '#9090a8'}>
+                      {l.label} {l.external && <ExternalLink size={12} opacity={0.6} />}
                     </a>
                   </li>
                 ))}

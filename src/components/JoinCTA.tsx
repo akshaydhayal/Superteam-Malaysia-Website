@@ -33,11 +33,11 @@ export default function JoinCTA() {
             ))}
           </div>
 
-          <span className="section-label" style={{ marginBottom: '1.5rem' }}>Start your journey</span>
-          <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 900, color: '#fff', lineHeight: 1.05, marginBottom: '1.5rem' }}>
+          <span className="section-label">Start your journey</span>
+          <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 900, color: '#fff', lineHeight: 1.15, marginBottom: '2rem' }}>
             Ready to build the<br /><span className="gradient-text-green">future in Malaysia?</span>
           </h2>
-          <p style={{ color: '#9090a8', fontSize: '1.15rem', lineHeight: 1.7, maxWidth: 640, margin: '0 auto 3rem' }}>
+          <p style={{ color: '#9090a8', fontSize: '1.1rem', lineHeight: 1.7, maxWidth: 640, margin: '0 auto 2.5rem' }}>
             Join the community of builders shaping the decentralized future on Solana. Bounties, grants, and networking await.
           </p>
 

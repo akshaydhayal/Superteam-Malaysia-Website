@@ -247,19 +247,17 @@ body::before {
    SECTION LABEL PILL
    ================================ */
 .section-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  background: rgba(153, 69, 255, 0.1);
-  border: 1px solid rgba(153, 69, 255, 0.22);
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: rgba(153,69,255,0.1);
+  border: 1px solid rgba(153,69,255,0.2);
+  border-radius: 99px;
   color: #c084fc;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 0.35rem 0.9rem;
-  border-radius: 9999px;
-  margin-bottom: 1.25rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 2rem; /* Increased spacing */
 }
 
 .section-label-green {

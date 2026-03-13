@@ -113,23 +113,45 @@ export default function Events() {
           <p style={{ fontSize: '0.82rem', fontWeight: 600, color: '#5a5a72', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Past Events</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '0.875rem' }}>
             {past.map((event, i) => (
-              <motion.div
-                key={event.id}
-                initial={{ opacity: 0, x: -16 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="glass-card"
-                style={{ borderRadius: 14, padding: '1rem 1.25rem', display: 'flex', alignItems: 'center', gap: '1rem', cursor: 'pointer', border: '1px solid rgba(255,255,255,0.06)' }}
-              >
-                <div style={{ width: 44, height: 44, borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', background: `${event.typeColor}15`, border: `1px solid ${event.typeColor}28`, flexShrink: 0 }}>
-                  <Calendar size={18} style={{ color: event.typeColor }} />
-                </div>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ color: '#fff', fontWeight: 600, fontSize: '0.875rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{event.title}</div>
-                  <div style={{ color: '#5a5a72', fontSize: '0.75rem', marginTop: 2 }}>{event.date} · {event.location}</div>
-                </div>
-                <span style={{ fontSize: '0.7rem', fontWeight: 600, padding: '3px 9px', borderRadius: 99, color: event.typeColor, background: `${event.typeColor}15`, flexShrink: 0 }}>{event.type}</span>
+                <motion.div
+                  key={event.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4 }}
+                  whileHover={{ y: -6 }}
+                  className="glass-card"
+                  style={{ 
+                    borderRadius: 24, 
+                    overflow: 'hidden', 
+                    border: '1px solid rgba(255,255,255,0.06)',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    background: 'linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%)'
+                   }}
+                >
+                  <div style={{ padding: '2.5rem', flexGrow: 1 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2rem' }}>
+                      <div style={{ 
+                        padding: '0.5rem 1rem', 
+                        borderRadius: 99, 
+                        background: event.type === 'Upcoming' ? 'rgba(0,255,136,0.1)' : 'rgba(255,255,255,0.05)', 
+                        color: event.type === 'Upcoming' ? '#00ff88' : '#9090a8', 
+                        fontSize: '0.75rem', 
+                        fontWeight: 800,
+                        border: '1px solid rgba(255,255,255,0.05)'
+                      }}>
+                        {event.type}
+                      </div>
+                    </div>
+                    
+                    <h3 style={{ color: '#fff', fontSize: '1.4rem', fontWeight: 800, marginBottom: '1rem', fontFamily: "'Syne', sans-serif", lineHeight: 1.3 }}>{event.title}</h3>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', color: '#9090a8', fontSize: '0.9rem', marginBottom: '2rem' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}><Calendar size={14} /> {event.date}</div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}><MapPin size={14} /> {event.location}</div>
+                    </div>
+                  </div>
               </motion.div>
             ))}
           </div>

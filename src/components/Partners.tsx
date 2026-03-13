@@ -65,19 +65,16 @@ export default function Partners() {
 
       <div className="container-max">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
           style={{ textAlign: 'center', marginBottom: '4rem' }}
         >
-          <span className="section-label">Partners</span>
-          <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 'clamp(2rem, 4.5vw, 3rem)', fontWeight: 900, color: '#fff', marginBottom: '1rem' }}>
-            Trusted by <span className="gradient-text-green">Solana&apos;s top</span> projects
+          <span className="section-label">Ecosystem</span>
+          <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 900, color: '#fff', marginBottom: '1.5rem', lineHeight: 1.2 }}>
+            Trusted by <span className="gradient-text-green">Solana's Top</span> <br /> Projects
           </h2>
-          <p style={{ color: '#9090a8', fontSize: '1rem', maxWidth: 480, margin: '0 auto' }}>
-            We work with leading ecosystem projects and local organizations to create opportunities.
-          </p>
         </motion.div>
 
         {/* Solana Partners */}
